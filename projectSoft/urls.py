@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from appweb.views import home, form
+from appweb import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('form/', form)
+    path('form/', form),
+    path('', views.speaker_list, name='speaker_list'),
+    path('speaker/add/', views.speaker_create, name='speaker_create'),
+    path('speaker/<int:pk>/edit/', views.speaker_update, name='speaker_update'),
+    path('speaker/<int:pk>/delete/', views.speaker_delete, name='speaker_delete'),
+
 ]

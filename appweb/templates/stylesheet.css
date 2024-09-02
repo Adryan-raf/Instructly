@@ -215,3 +215,10 @@ body{
     transform: translateX(200%);
     transform: translateX(200%);
 }
+
+.back-button{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}

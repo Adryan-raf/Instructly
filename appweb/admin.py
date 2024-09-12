@@ -1,3 +1,5 @@
 from django.contrib import admin
+from appweb.models import User, Speaker
 
-# Register your models here.
+admin.site.register(Speaker)
+admin.site.register(User)

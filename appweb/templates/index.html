@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Instructly</title>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="stylesheet.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -45,11 +45,18 @@
                   <td>11:10</td>
                   <td>12:50</td>
             </tr>
-
-
-
         </tbody>
         </table>
+    </div>
+
+    <div>
+        <ul>
+            {% for users in users %}
+            <li>
+                {{ users.id }} - {{ users.email }}
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
 </body>

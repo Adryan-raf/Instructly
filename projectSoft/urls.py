@@ -21,7 +21,7 @@ from appweb import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('form/', views.form),
-    path('register/', views.register, name='register')
-
+    path('form/', views.form, name='form'),
+    path('tipo_cadastro/', views.tipo_cadastro, name='tipo_cadastro'),  # Verifique se essa rota está presente
+    path('cadastrar_estudante/', views.cadastrar_estudante, name='cadastrar_estudante'),
 ]

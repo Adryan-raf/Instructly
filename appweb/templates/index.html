@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Instructly</title>
     <link href="stylesheet.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
     <div class="col-8 m-auto pt-2 pb-2 text-center">
         <h1>Instructly</h1>
-        <h3>Your educational management system</h3>
+        <h3>Seu sistema de gerenciamento educacional</h3> <!-- Traduzido para "Seu sistema de gerenciamento educacional" -->
     </div>
 
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <a href="/form" class="btn btn-success">Add</a>
-    </div>
 
     <div class="col-8 m-auto pt-2 pb-2 text-center">
         <table class="table table-bordered">
           <thead class="thead-dark">
             <tr>
-                <th scope="col">Code</th>
-                <th scope="col">Lectures</th>
+                <th scope="col">Código</th>
+                <th scope="col">Aulas</th>
                 <th scope="col">Professor</th>
-                <th scope="col">Start</th>
-                <th scope="col">End</th>
-
+                <th scope="col">Início</th>
+                <th scope="col">Fim</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">12352</th>
-                <td>Anomaly Detection W/ AI</td>
+                <td>Detecção de Anomalias com IA</td>
                 <td>Pedro Henrique</td>
                 <td>09:20</td>
                 <td>11:00</td>
@@ -40,7 +35,7 @@
 
             <tr>
                   <th scope="row">78604</th>
-                  <td>Search Algorithms and Binary Search - Why is it important?</td>
+                  <td>Algoritmos de Busca e Busca Binária - Por que é importante?</td>
                   <td>Diego Pinheiro</td>
                   <td>11:10</td>
                   <td>12:50</td>
@@ -49,14 +44,8 @@
         </table>
     </div>
 
-    <div>
-        <ul>
-            {% for users in users %}
-            <li>
-                {{ users.id }} - {{ users.email }}
-            </li>
-            {% endfor %}
-        </ul>
+    <div class="col-8 m-auto pt-2 pb-2 text-center">
+        <a href="/form" class="btn btn-success">Login</a>
     </div>
 
 </body>

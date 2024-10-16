@@ -1,19 +1,47 @@
+# appweb/models.py
+
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+# Defina um gerenciador para o User personalizado
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('O email deve ser fornecido.')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # Criptografa a senha
+        user.save(using=self._db)
+        return user
 
-# Create your models here.
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-class Speaker(models.Model):
-    name = models.CharField(max_length=250)
-    email = models.CharField(max_length=250)
-    theme = models.CharField(max_length=250)
-    synopsis = models.CharField(max_length=500)
+        return self.create_user(email, password, **extra_fields)
 
+# Modelo de usuário personalizado
+class User(AbstractBaseUser):
+    email = models.EmailField(unique=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-class User(models.Model):
-    objects = None
-    email = models.EmailField(max_length=250, unique=True)
-    password = models.CharField(max_length=250)
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email
+
+# Modelo de Estudante
+class Estudante(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Relaciona o estudante ao usuário
+    nome = models.CharField(max_length=100)
+    email_institucional = models.EmailField()
+    curso = models.CharField(max_length=100)
+    periodo = models.CharField(max_length=10)
+    matricula = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nome

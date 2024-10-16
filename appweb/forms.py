@@ -1,25 +1,22 @@
-from django.forms import ModelForm
-from appweb.models import Speaker, User
 from django import forms
-from .models import User
+from .models import User, Estudante
 
 
-class SpeakerForm(ModelForm):
-    class Meta:
-        model = Speaker
-        fields = ["name", "email", "theme", "synopsis"]
 
 
 # forms.py
 
 
-class UserRegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput, label='Password')
-    password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm Password')
-
+class EstudanteRegistrationForm(forms.Form):
+    nome = forms.CharField(max_length=100, label="Nome")
+    email_institucional = forms.EmailField(label="Email Institucional")
+    curso = forms.CharField(max_length=100, label="Curso")
+    periodo = forms.CharField(max_length=10, label="Período")
+    matricula = forms.CharField(max_length=20, label="Matrícula")
+    senha = forms.CharField(widget=forms.PasswordInput(), label="Senha")
     class Meta:
-        model = User
-        fields = ['email']
+        model = Estudante
+        fields = ['nome', 'email_institucional', 'curso', 'periodo', 'matricula', 'senha']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')

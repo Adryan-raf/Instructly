@@ -11,14 +11,17 @@
 
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form method="POST" action="#">
+            <form method="POST" action="{% url 'login' %}"> <!-- Atualizado para enviar para a view de login -->
                 {% csrf_token %}
-                <h1>Entrar</h1> <!-- Alterado para "Entrar" -->
-                <div style="display: flex; align-items: center;"> <!-- Flexbox para alinhar lado a lado -->
-                    <input type="email" placeholder="Email" style="margin-right: 10px;">
-                    <input type="password" placeholder="Senha" style="margin-right: 10px;">
-                    <button>Entrar</button> <!-- Alterado para "Entrar" -->
+                <h1>Entrar</h1>
+                <div style="display: flex; align-items: center;">
+                    <input type="email" name="email" placeholder="Email" required style="margin-right: 10px;"> <!-- Adicionando o atributo name -->
+                    <input type="password" name="senha" placeholder="Senha" required style="margin-right: 10px;"> <!-- Adicionando o atributo name -->
+                    <button type="submit">Entrar</button> <!-- Adicionando type="submit" -->
                 </div>
+                {% if error %}
+                    <div class="alert alert-danger mt-3">{{ error }}</div> <!-- Mensagem de erro -->
+                {% endif %}
                 <a href="#" style="display:block; margin-top:10px;">Esqueceu sua senha?</a>
             </form>
         </div>
@@ -35,8 +38,7 @@
                 <div class="toggle-panel toggle-right">
                     <h1>Não tem cadastro?</h1>
                     <p>Cadastre-se com seus dados pessoais para usar todos os recursos do site</p>
-                       <button class="hidden" id="tipo_cadastro" onclick="window.location.href='{% url 'tipo_cadastro' %}'">Cadastrar-se</button>
-
+                    <button class="hidden" id="tipo_cadastro" onclick="window.location.href='{% url 'tipo_cadastro' %}'">Cadastrar-se</button>
                 </div>
             </div>
         </div>
